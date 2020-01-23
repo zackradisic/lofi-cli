@@ -1,5 +1,7 @@
 "use strict";
 
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -16,8 +18,6 @@ var _fs = _interopRequireDefault(require("fs"));
 var _lame = _interopRequireDefault(require("lame"));
 
 var _speaker = _interopRequireDefault(require("speaker"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var Decoder = _lame["default"].Decoder;
 var decoderStream = Decoder();
