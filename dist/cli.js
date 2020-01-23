@@ -11,8 +11,6 @@ var _terminalKit = require("terminal-kit");
 
 var _youtubeStream = _interopRequireDefault(require("./youtube-stream"));
 
-var _stream = require("stream");
-
 var main =
 /*#__PURE__*/
 function () {

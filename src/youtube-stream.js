@@ -1,7 +1,6 @@
 import ytdl from 'ytdl-core'
 import FFmpeg from 'fluent-ffmpeg'
 import { PassThrough } from 'stream'
-import fs from 'fs'
 
 import lame from 'lame'
 import speaker from 'speaker'

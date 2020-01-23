@@ -13,8 +13,6 @@ var _fluentFfmpeg = _interopRequireDefault(require("fluent-ffmpeg"));
 
 var _stream = require("stream");
 
-var _fs = _interopRequireDefault(require("fs"));
-
 var _lame = _interopRequireDefault(require("lame"));
 
 var _speaker = _interopRequireDefault(require("speaker"));

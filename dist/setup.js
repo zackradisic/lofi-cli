@@ -13,7 +13,6 @@ var CORE_AUDIO_PATH = _path["default"].join(__dirname + "/../node_modules/speake
 
 var edit = function edit() {
   var config = JSON.parse(_fs["default"].readFileSync(CONFIG_PATH));
-  console.log(config);
 
   if (config.setup) {
     _fs["default"].copyFileSync(_path["default"].join(__dirname + "/coreaudio.c"), CORE_AUDIO_PATH);

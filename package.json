@@ -30,7 +30,7 @@
   },
   "bin": {
     "lofi": "./dist/cli.js",
-    "lofi-setup": "./dist/setup.js"
+    "lofi-setup": "./dist/setup.js && cd node_modules/speaker && node-gyp build"
   },
   "repository": {
     "type": "git",
