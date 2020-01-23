@@ -1,0 +1,32 @@
+{
+  "name": "lofi-cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "cli.js",
+  "scripts": {
+    "dev": "babel-watch src/cli.js",
+    "compile": "babel src --out-dir dist"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.8.3",
+    "@babel/core": "^7.8.3",
+    "@babel/node": "^7.8.3",
+    "@babel/plugin-transform-runtime": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "babel-watch": "^7.0.0"
+  },
+  "dependencies": {
+    "fluent-ffmpeg": "^2.1.2",
+    "growing-file": "^0.1.3",
+    "lame": "^1.2.4",
+    "play-sound": "^1.1.3",
+    "speaker": "^0.5.1",
+    "terminal-kit": "^1.32.3",
+    "ytdl-core": "^1.0.7"
+  },
+  "bin": {
+    "lofi": "./dist/cli.js"
+  }
+}
