@@ -11,7 +11,14 @@ However, performance becomes an issue, especially if you have multiple browser t
 lofi-cli simply streams only the audio from the livestream, and pipes it to your machine's output. 
 
 ### Usage
-After installation, simply run the command `lofi` in a terminal window. Press `CTRL + C` to kill the program.
+After installation, run:
+```
+lofi-setup
+```
+Then lofi-cli is ready and whenever you wish to listen, you may open a terminal screen and run the following command:
+```
+lofi
+```
 
 ### Prerequisites
 * [ffmpeg](https://github.com/FFmpeg/FFmpeg) - for converting m4a audio files to mp3
