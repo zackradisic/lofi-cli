@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-import "regenerator-runtime/runtime";
 
 import { terminal } from 'terminal-kit'
 import playStream from './youtube-stream'

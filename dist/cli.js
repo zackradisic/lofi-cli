@@ -7,8 +7,6 @@ var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"))
 
 var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
 
-require("regenerator-runtime/runtime");
-
 var _terminalKit = require("terminal-kit");
 
 var _youtubeStream = _interopRequireDefault(require("./youtube-stream"));
