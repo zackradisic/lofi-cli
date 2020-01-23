@@ -23,6 +23,11 @@ lofi
 ### Prerequisites
 * [ffmpeg](https://github.com/FFmpeg/FFmpeg) - for converting m4a audio files to mp3
 
+If you are on MacOS then you must install [node-gyp](https://github.com/nodejs/node-gyp#readme):
+```
+npm install -g node-gyp
+```
+
 ### OS Support
 lofi-cli supports all platforms. OS specific problems will likely be related to the library used to play audio: [node-speaker](https://github.com/TooTallNate/node-speaker)
 
