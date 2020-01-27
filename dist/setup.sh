@@ -1,0 +1,1 @@
+./setup.js && cd ../node_modules/speaker && node-gyp build

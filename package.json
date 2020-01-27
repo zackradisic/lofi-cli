@@ -1,6 +1,6 @@
 {
   "name": "lofi-cli",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "",
   "main": "dist/cli.js",
   "scripts": {
@@ -30,7 +30,7 @@
   },
   "bin": {
     "lofi": "./dist/cli.js",
-    "lofi-setup": "./dist/setup.js && cd node_modules/speaker && node-gyp build"
+    "lofi-setup": "./dist/setup.sh"
   },
   "repository": {
     "type": "git",
