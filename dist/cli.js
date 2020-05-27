@@ -1,41 +1,17 @@
 #!/usr/bin/env node
 "use strict";
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-
-var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
-
-var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
-
 var _terminalKit = require("terminal-kit");
 
 var _youtubeStream = _interopRequireDefault(require("./youtube-stream"));
 
-var main =
-/*#__PURE__*/
-function () {
-  var _ref = (0, _asyncToGenerator2["default"])(
-  /*#__PURE__*/
-  _regenerator["default"].mark(function _callee() {
-    return _regenerator["default"].wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            _terminalKit.terminal.green.bold('Playing ChilledCow stream...\n');
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-            (0, _youtubeStream["default"])();
+var main = function main() {
+  _terminalKit.terminal.green.bold('Playing ChilledCow stream...\n');
 
-          case 2:
-          case "end":
-            return _context.stop();
-        }
-      }
-    }, _callee);
-  }));
-
-  return function main() {
-    return _ref.apply(this, arguments);
-  };
-}();
+  (0, _youtubeStream["default"])();
+};
 
 main();
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uL3NyYy9jbGkuanMiXSwibmFtZXMiOlsibWFpbiIsInRlcm1pbmFsIiwiZ3JlZW4iLCJib2xkIl0sIm1hcHBpbmdzIjoiQUFBQTs7O0FBRUE7O0FBQ0E7Ozs7QUFFQSxJQUFNQSxJQUFJLEdBQUcsU0FBUEEsSUFBTyxHQUFNO0FBQ2ZDLHdCQUFTQyxLQUFULENBQWVDLElBQWYsQ0FBb0IsZ0NBQXBCOztBQUNBO0FBQ0gsQ0FIRDs7QUFNQUgsSUFBSSIsInNvdXJjZXNDb250ZW50IjpbIiMhL3Vzci9iaW4vZW52IG5vZGVcblxuaW1wb3J0IHsgdGVybWluYWwgfSBmcm9tICd0ZXJtaW5hbC1raXQnXG5pbXBvcnQgcGxheVN0cmVhbSBmcm9tICcuL3lvdXR1YmUtc3RyZWFtJ1xuXG5jb25zdCBtYWluID0gKCkgPT4ge1xuICAgIHRlcm1pbmFsLmdyZWVuLmJvbGQoJ1BsYXlpbmcgQ2hpbGxlZENvdyBzdHJlYW0uLi5cXG4nKVxuICAgIHBsYXlTdHJlYW0oKVxufVxuXG5cbm1haW4oKVxuXG5cblxuIl19

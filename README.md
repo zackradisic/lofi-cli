@@ -11,7 +11,7 @@ However, performance becomes an issue, especially if you have multiple browser t
 lofi-cli simply streams only the audio from the livestream, and pipes it to your machine's output. 
 
 ### Usage
-After installation, run:
+After installation if you are on MacOS, you must run:
 ```
 lofi-setup
 ```

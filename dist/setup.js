@@ -1,20 +1,30 @@
 #!/usr/bin/env node
 "use strict";
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-
 var _fs = _interopRequireDefault(require("fs"));
 
 var _path = _interopRequireDefault(require("path"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var CONFIG_PATH = _path["default"].join(__dirname + "/config.json");
 
 var CORE_AUDIO_PATH = _path["default"].join(__dirname + "/../node_modules/speaker/deps/mpg123/src/output/coreaudio.c");
 
-var edit = function edit() {
+var setup = function setup() {
   var config = JSON.parse(_fs["default"].readFileSync(CONFIG_PATH));
 
   if (config.setup) {
+    // The node-speaker package relies on the library mpg123 to play audio, which
+    // unfortunately has an annoying warning that is displayed frequently.
+    // It is likely due to network inconsistencies from streaming, resulting in no audio data being
+    // sent to the speaker module resulting the "buffer underflow" warning.
+    //
+    // This warning seems like it should only appear to MacOS users because it occurs
+    // in `coreaudio.c`, which handles audio output to MacOS machines in mpg123.
+    //
+    // The solution for now is to simply comment out the warning in `coreaudio.c`, and build
+    // mpg123 again using node-gyp.
     _fs["default"].copyFileSync(_path["default"].join(__dirname + "/coreaudio.c"), CORE_AUDIO_PATH);
 
     config.setup = false;
@@ -23,4 +33,5 @@ var edit = function edit() {
   }
 };
 
-edit();
+setup();
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uL3NyYy9zZXR1cC5qcyJdLCJuYW1lcyI6WyJDT05GSUdfUEFUSCIsInBhdGgiLCJqb2luIiwiX19kaXJuYW1lIiwiQ09SRV9BVURJT19QQVRIIiwic2V0dXAiLCJjb25maWciLCJKU09OIiwicGFyc2UiLCJmcyIsInJlYWRGaWxlU3luYyIsImNvcHlGaWxlU3luYyIsIndyaXRlRmlsZVN5bmMiLCJzdHJpbmdpZnkiXSwibWFwcGluZ3MiOiJBQUFBOzs7QUFFQTs7QUFDQTs7OztBQUVBLElBQU1BLFdBQVcsR0FBR0MsaUJBQUtDLElBQUwsQ0FBVUMsU0FBUyxHQUFHLGNBQXRCLENBQXBCOztBQUNBLElBQU1DLGVBQWUsR0FBR0gsaUJBQUtDLElBQUwsQ0FBVUMsU0FBUyxHQUFHLDZEQUF0QixDQUF4Qjs7QUFDQSxJQUFNRSxLQUFLLEdBQUcsU0FBUkEsS0FBUSxHQUFNO0FBQ2hCLE1BQU1DLE1BQU0sR0FBR0MsSUFBSSxDQUFDQyxLQUFMLENBQVdDLGVBQUdDLFlBQUgsQ0FBZ0JWLFdBQWhCLENBQVgsQ0FBZjs7QUFDQSxNQUFHTSxNQUFNLENBQUNELEtBQVYsRUFBaUI7QUFDYjtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBSSxtQkFBR0UsWUFBSCxDQUFnQlYsaUJBQUtDLElBQUwsQ0FBVUMsU0FBUyxHQUFHLGNBQXRCLENBQWhCLEVBQXVEQyxlQUF2RDs7QUFDQUUsSUFBQUEsTUFBTSxDQUFDRCxLQUFQLEdBQWUsS0FBZjs7QUFDQUksbUJBQUdHLGFBQUgsQ0FBaUJaLFdBQWpCLEVBQThCTyxJQUFJLENBQUNNLFNBQUwsQ0FBZVAsTUFBZixDQUE5QjtBQUNIO0FBQ0osQ0FqQkQ7O0FBbUJBRCxLQUFLIiwic291cmNlc0NvbnRlbnQiOlsiIyEvdXNyL2Jpbi9lbnYgbm9kZVxuXG5pbXBvcnQgZnMgZnJvbSAnZnMnXG5pbXBvcnQgcGF0aCBmcm9tICdwYXRoJ1xuXG5jb25zdCBDT05GSUdfUEFUSCA9IHBhdGguam9pbihfX2Rpcm5hbWUgKyBcIi9jb25maWcuanNvblwiKVxuY29uc3QgQ09SRV9BVURJT19QQVRIID0gcGF0aC5qb2luKF9fZGlybmFtZSArIFwiLy4uL25vZGVfbW9kdWxlcy9zcGVha2VyL2RlcHMvbXBnMTIzL3NyYy9vdXRwdXQvY29yZWF1ZGlvLmNcIilcbmNvbnN0IHNldHVwID0gKCkgPT4ge1xuICAgIGNvbnN0IGNvbmZpZyA9IEpTT04ucGFyc2UoZnMucmVhZEZpbGVTeW5jKENPTkZJR19QQVRIKSlcbiAgICBpZihjb25maWcuc2V0dXApIHtcbiAgICAgICAgLy8gVGhlIG5vZGUtc3BlYWtlciBwYWNrYWdlIHJlbGllcyBvbiB0aGUgbGlicmFyeSBtcGcxMjMgdG8gcGxheSBhdWRpbywgd2hpY2hcbiAgICAgICAgLy8gdW5mb3J0dW5hdGVseSBoYXMgYW4gYW5ub3lpbmcgd2FybmluZyB0aGF0IGlzIGRpc3BsYXllZCBmcmVxdWVudGx5LlxuICAgICAgICAvLyBJdCBpcyBsaWtlbHkgZHVlIHRvIG5ldHdvcmsgaW5jb25zaXN0ZW5jaWVzIGZyb20gc3RyZWFtaW5nLCByZXN1bHRpbmcgaW4gbm8gYXVkaW8gZGF0YSBiZWluZ1xuICAgICAgICAvLyBzZW50IHRvIHRoZSBzcGVha2VyIG1vZHVsZSByZXN1bHRpbmcgdGhlIFwiYnVmZmVyIHVuZGVyZmxvd1wiIHdhcm5pbmcuXG4gICAgICAgIC8vXG4gICAgICAgIC8vIFRoaXMgd2FybmluZyBzZWVtcyBsaWtlIGl0IHNob3VsZCBvbmx5IGFwcGVhciB0byBNYWNPUyB1c2VycyBiZWNhdXNlIGl0IG9jY3Vyc1xuICAgICAgICAvLyBpbiBgY29yZWF1ZGlvLmNgLCB3aGljaCBoYW5kbGVzIGF1ZGlvIG91dHB1dCB0byBNYWNPUyBtYWNoaW5lcyBpbiBtcGcxMjMuXG4gICAgICAgIC8vXG4gICAgICAgIC8vIFRoZSBzb2x1dGlvbiBmb3Igbm93IGlzIHRvIHNpbXBseSBjb21tZW50IG91dCB0aGUgd2FybmluZyBpbiBgY29yZWF1ZGlvLmNgLCBhbmQgYnVpbGRcbiAgICAgICAgLy8gbXBnMTIzIGFnYWluIHVzaW5nIG5vZGUtZ3lwLlxuICAgICAgICBmcy5jb3B5RmlsZVN5bmMocGF0aC5qb2luKF9fZGlybmFtZSArIFwiL2NvcmVhdWRpby5jXCIpLCBDT1JFX0FVRElPX1BBVEgpXG4gICAgICAgIGNvbmZpZy5zZXR1cCA9IGZhbHNlXG4gICAgICAgIGZzLndyaXRlRmlsZVN5bmMoQ09ORklHX1BBVEgsIEpTT04uc3RyaW5naWZ5KGNvbmZpZykpXG4gICAgfVxufVxuXG5zZXR1cCgpIl19
