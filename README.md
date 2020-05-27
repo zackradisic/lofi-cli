@@ -1,7 +1,7 @@
 # lofi-cli
 `npm install -g lofi-cli` 
 
-Plays ChilledCow's lofi hip-hop [livestream](https://www.youtube.com/watch?v=hHW1oY26kxQ) from the terminal.
+Plays ChilledCow's lofi hip-hop [livestream](https://www.youtube.com/watch?v=5qap5aO4i9A) from the terminal.
 
 ### Why?
 If you're a student then you're likely listening to the ChilledCow lofi livesteam on YouTube while you study. 
