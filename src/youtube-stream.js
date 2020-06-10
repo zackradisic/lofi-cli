@@ -3,11 +3,11 @@ import FFmpeg from 'fluent-ffmpeg'
 import { PassThrough } from 'stream'
 
 import lame from 'lame'
-import speaker from 'speaker'
+import Speaker from 'speaker'
 const Decoder = lame.Decoder
 
 const decoderStream = Decoder()
-const speakerStream = new speaker()
+const speakerStream = new Speaker()
 
 const playStream = () => {
     const URL = 'https://www.youtube.com/watch?v=5qap5aO4i9A'
@@ -19,7 +19,7 @@ const playStream = () => {
     const ffmpeg = new FFmpeg(ytStream)
 
     ffmpeg.on('error', (error) => {
-        console.log('bingo ' + error)
+        console.log(error)
     })
 
     ffmpeg.format('mp3').pipe(stream)
@@ -28,8 +28,4 @@ const playStream = () => {
     return stream
 }
 
-
 export default playStream
-
-
-
