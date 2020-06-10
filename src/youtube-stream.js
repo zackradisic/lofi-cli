@@ -4,10 +4,13 @@ import { PassThrough } from 'stream'
 
 import lame from 'lame'
 import Speaker from 'speaker'
+import Volume from 'pcm-volume'
+
 const Decoder = lame.Decoder
 
 const decoderStream = Decoder()
 const speakerStream = new Speaker()
+const v = new Volume()
 
 const playStream = () => {
     const URL = 'https://www.youtube.com/watch?v=5qap5aO4i9A'
@@ -23,9 +26,9 @@ const playStream = () => {
     })
 
     ffmpeg.format('mp3').pipe(stream)
-    stream.pipe(decoderStream).pipe(speakerStream)
+    stream.pipe(decoderStream).pipe(v).pipe(speakerStream)
 
-    return stream
+    return { stream: stream, volume: v }
 }
 
 export default playStream
