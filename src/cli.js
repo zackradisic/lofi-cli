@@ -13,6 +13,16 @@ const main = () => {
     terminal.grabInput()
     const lofiStream = playStream()
 
+    const progressBar = terminal.progressBar({
+        width: 80,
+        title: 'Volume',
+        eta: false,
+        percent: true,
+        barHeadChar: '=',
+        syncMode: true
+    })
+
+    progressBar.update(lofiStream.volume.volume)
     terminal.on('key', (name, matches, data) => {
         const offset = 0.1
         switch (name) {
@@ -25,6 +35,7 @@ const main = () => {
         case keys.EXIT:
             process.exit(1)
         }
+        progressBar.update(lofiStream.volume.volume)
     })
 }
 
