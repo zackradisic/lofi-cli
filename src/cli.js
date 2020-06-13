@@ -22,7 +22,7 @@ const init = lofiStream => {
     const cli = { terminal: terminal, progressBar: progressBar }
 
     progressBar.update(lofiStream.volume.volume)
-    terminal.on('key', name => menuOnClick(cli, lofiStream))
+    terminal.on('key', name => menuOnClick(cli, lofiStream)(name))
 
     return cli
 }
