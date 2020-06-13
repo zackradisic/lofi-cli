@@ -5,6 +5,7 @@ import { PassThrough } from 'stream'
 import lame from 'lame'
 import Speaker from 'speaker'
 import Volume from 'pcm-volume'
+import { URL } from './config'
 
 const Decoder = lame.Decoder
 
@@ -13,7 +14,6 @@ const speakerStream = new Speaker()
 const v = new Volume()
 
 const playStream = () => {
-    const URL = 'https://www.youtube.com/watch?v=5qap5aO4i9A'
     const ytStream = ytdl(URL, {
         audioonly: true
     })
