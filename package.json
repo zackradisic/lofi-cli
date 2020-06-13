@@ -34,7 +34,7 @@
     "ytdl-core": "^2.1.5"
   },
   "bin": {
-    "lofi": "./dist/cli.js",
+    "lofi": "./dist/main.js",
     "lofi-setup": "./dist/setup.sh"
   },
   "repository": {
