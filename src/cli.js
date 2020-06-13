@@ -1,18 +1,16 @@
-#!/usr/bin/env node
-
 import { terminal } from 'terminal-kit'
-import playStream from './youtube-stream'
+import detectSong from './detect-song'
 
 const keys = {
     VOLUME_DOWN: 'LEFT',
     VOLUME_UP: 'RIGHT',
+    GET_CURRENT_SONG: 'CTRL_A',
     EXIT: 'CTRL_C'
 }
-const main = () => {
+
+const init = lofiStream => {
     terminal.green.bold('Playing ChilledCow stream...\n')
     terminal.grabInput()
-    const lofiStream = playStream()
-
     const progressBar = terminal.progressBar({
         width: 80,
         title: 'Volume',
@@ -22,21 +20,30 @@ const main = () => {
         syncMode: true
     })
 
+    const cli = { terminal: terminal, progressBar: progressBar }
+
     progressBar.update(lofiStream.volume.volume)
-    terminal.on('key', (name, matches, data) => {
-        const offset = 0.1
-        switch (name) {
-        case keys.VOLUME_DOWN:
-            if (lofiStream.volume.volume - offset >= 0) lofiStream.volume.setVolume(lofiStream.volume.volume - 0.1)
-            break
-        case keys.VOLUME_UP:
-            if (lofiStream.volume.volume + offset <= 1) lofiStream.volume.setVolume(lofiStream.volume.volume + 0.1)
-            break
-        case keys.EXIT:
-            process.exit(1)
-        }
-        progressBar.update(lofiStream.volume.volume)
-    })
+    terminal.on('key', name => menuOnClick(cli, lofiStream)(name))
+
+    return cli
 }
 
-main()
+const menuOnClick = (cli, lofiStream) => keyName => {
+    const offset = 0.1
+    switch (keyName) {
+    case keys.VOLUME_DOWN:
+        if (lofiStream.volume.volume - offset >= 0) lofiStream.volume.setVolume(lofiStream.volume.volume - 0.1)
+        break
+    case keys.VOLUME_UP:
+        if (lofiStream.volume.volume + offset <= 1) lofiStream.volume.setVolume(lofiStream.volume.volume + 0.1)
+        break
+    case keys.GET_CURRENT_SONG:
+        detectSong()
+        break
+    case keys.EXIT:
+        process.exit(1)
+    }
+    cli.progressBar.update(lofiStream.volume.volume)
+}
+
+export default init

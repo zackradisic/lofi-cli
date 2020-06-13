@@ -24,15 +24,17 @@
   "dependencies": {
     "bindings": "^1.5.0",
     "fluent-ffmpeg": "^2.1.2",
+    "jimp": "^0.13.0",
     "lame": "git+https://github.com/tomscytale/node-lame.git",
     "nan": "^2.14.1",
     "pcm-volume": "^1.0.0",
     "speaker": "^0.5.1",
     "terminal-kit": "^1.32.3",
+    "tesseract.js": "^2.1.1",
     "ytdl-core": "^2.1.5"
   },
   "bin": {
-    "lofi": "./dist/cli.js",
+    "lofi": "./dist/main.js",
     "lofi-setup": "./dist/setup.sh"
   },
   "repository": {
