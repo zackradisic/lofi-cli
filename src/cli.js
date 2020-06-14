@@ -38,7 +38,7 @@ const menuOnClick = (cli, lofiStream) => keyName => {
         if (lofiStream.volume.volume + offset <= 1) lofiStream.volume.setVolume(lofiStream.volume.volume + 0.1)
         break
     case keys.GET_CURRENT_SONG:
-        detectSong()
+        detectSong().then(song => console.log(`Current song: ${song}`))
         break
     case keys.EXIT:
         process.exit(1)

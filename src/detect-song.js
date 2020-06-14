@@ -19,9 +19,8 @@ const detectSong = async () => {
     try {
         await getVideo(videoPath) // Step 1. Download a snippet of the stream
         await createThumbnail(videoPath, imgPath) // Step 2. Generate a picture of a frame
-        await cropThumbnail(imgPath) // Step 3. Crop thumbnail for text recognition
-        const text = await recognizeText(croppedPath)
-        console.log(text)
+        await prepareThumbnail(imgPath) // Step 3. Prepare thumbnail for text recognition: greyscale, crop, etc.
+        return await recognizeText(croppedPath)
     } catch (err) {
         console.log(err)
     }
@@ -58,9 +57,16 @@ const getVideo = async videoPath => {
     })
 }
 
-const cropThumbnail = async imgPath => {
+const prepareThumbnail = async imgPath => {
     const img = await jimp.read(imgPath)
-    img.crop(0, 0, 1440, 64).write(getFilePath('cropped', 'png'))
+    img
+        .crop(0, 0, 1440, 78)
+        .color([
+            { apply: 'greyscale', params: [] }
+        ])
+        .posterize(100)
+        .invert()
+        .write(getFilePath('cropped', 'png'))
 }
 
 const createThumbnail = (videoPath, imgPath) => {
