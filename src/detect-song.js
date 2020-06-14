@@ -3,9 +3,13 @@ import fs from 'fs'
 import ytdl from 'ytdl-core'
 import ffmpeg from 'fluent-ffmpeg'
 import jimp from 'jimp'
+
 import { createWorker } from 'tesseract.js'
+import { promisify } from 'util'
 
 import { DOWNLOADS_DIR_NAME, URL } from './config'
+
+const stats = promisify(fs.stat)
 
 const detectSong = async () => {
     const videoPath = getFilePath('video', 'mp4')
@@ -35,15 +39,19 @@ const recognizeText = async imgPath => {
     return text
 }
 
-const getVideo = videoPath => {
+const getVideo = async videoPath => {
     const stream = ytdl(URL, { filter: (format) => format.container === 'mp4' }).pipe(fs.createWriteStream(videoPath))
 
-    // Right now we are waiting 3 seconds to wait until sufficient data has been
-    // downloaded to take a screenshot with ffmpeg. In the future it is probably
-    // best to run getThumbnail() in a loop and if an error occures, wait a short
-    // time interval and retry.
-    setTimeout(() => { stream.close() }, 3000)
-
+    const maxRetries = 5
+    let retries = 0
+    while (true) {
+        await sleep(2000)
+        const stat = await stats(videoPath)
+        if (stat.size / 1000000 >= 1) break
+        retries++
+        if (retries >= maxRetries) throw new Error('Error reading video')
+    }
+    stream.close()
     return new Promise((resolve, reject) => {
         stream.on('close', resolve)
         stream.on('error', err => reject(err))
@@ -56,8 +64,6 @@ const cropThumbnail = async imgPath => {
 }
 
 const createThumbnail = (videoPath, imgPath) => {
-    console.log('Creating thumnbnail: ' + imgPath)
-
     const getThumbnail = ffmpeg(videoPath)
 
     getThumbnail
@@ -74,5 +80,7 @@ const createThumbnail = (videoPath, imgPath) => {
 }
 
 const getFilePath = (name, ext) => path.join(__dirname, '../', DOWNLOADS_DIR_NAME, `${name}.${ext}`)
+
+const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
 
 export default detectSong
