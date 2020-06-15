@@ -23,13 +23,14 @@
   },
   "dependencies": {
     "bindings": "^1.5.0",
+    "blessed": "^0.1.81",
     "fluent-ffmpeg": "^2.1.2",
     "jimp": "^0.13.0",
     "lame": "git+https://github.com/tomscytale/node-lame.git",
     "nan": "^2.14.1",
     "pcm-volume": "^1.0.0",
+    "simple-node-logger": "^18.12.24",
     "speaker": "^0.5.1",
-    "terminal-kit": "^1.32.3",
     "tesseract.js": "^2.1.1",
     "ytdl-core": "^2.1.5"
   },
