@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import playStream from './youtube-stream'
-import initCLI from './cli'
+import initCLI from './cli/cli'
 
 const main = () => {
     const lofiStream = playStream()
