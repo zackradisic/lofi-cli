@@ -27,3 +27,8 @@ const getVolumeBars = volume => Array.from(
     )
 
 export const updateControls = controls => (controls.box.content = createText(controls.currentSong, controls.volume))
+
+export const updateColor = (controls, screen) => color => {
+    controls.box.style.bg = color
+    screen.render()
+}

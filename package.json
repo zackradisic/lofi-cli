@@ -26,6 +26,7 @@
     "blessed": "^0.1.81",
     "fluent-ffmpeg": "^2.1.2",
     "jimp": "^0.13.0",
+    "jsfft": "0.0.4",
     "lame": "git+https://github.com/tomscytale/node-lame.git",
     "nan": "^2.14.1",
     "pcm-volume": "^1.0.0",

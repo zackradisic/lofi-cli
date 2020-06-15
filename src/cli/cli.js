@@ -1,6 +1,7 @@
 import blessed from 'blessed'
 import detectSong from '../detect-song'
-import { createControls, updateControls } from './controls'
+import { createControls, updateControls, updateColor } from './controls'
+import audioVisualizer from '../audio-visualize/audio-visualizer'
 
 const keys = {
     VOLUME_DOWN: 'left',
@@ -37,6 +38,8 @@ const init = lofiStream => {
         controls: controls
     }
     screen.on('keypress', onKeyPress(cli, lofiStream))
+
+    audioVisualizer(lofiStream.stream, updateColor(controls, screen))
     return cli
 }
 
