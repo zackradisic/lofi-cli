@@ -32,7 +32,7 @@
     "simple-node-logger": "^18.12.24",
     "speaker": "^0.5.1",
     "tesseract.js": "^2.1.1",
-    "ytdl-core": "^2.1.5"
+    "ytdl-core": "^4.0.0"
   },
   "bin": {
     "lofi": "./dist/main.js",
